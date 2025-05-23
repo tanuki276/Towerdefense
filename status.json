@@ -1,0 +1,150 @@
+{
+  "characters": [
+    {
+      "id": "mameshiba",
+      "name": "豆柴",
+      "rarity": "R",
+      "initial": true,
+      "stats": {
+        "hp": 100,
+        "attack": 20,
+        "speed": 5,
+        "cost": 50,
+        "productionTime": 1
+      },
+      "description": "最初からいる忠実なわんこ。"
+    },
+    {
+      "id": "goldenretriever",
+      "name": "ゴールデンレトリバー",
+      "rarity": "R",
+      "initial": false,
+      "stats": {
+        "hp": 150,
+        "attack": 30,
+        "speed": 4,
+        "cost": 80,
+        "productionTime": 2
+      },
+      "description": "安定した性能を持つ大型犬。"
+    },
+    {
+      "id": "shibainu",
+      "name": "柴犬",
+      "rarity": "SR",
+      "initial": false,
+      "stats": {
+        "hp": 200,
+        "attack": 40,
+        "speed": 6,
+        "cost": 120,
+        "productionTime": 3
+      },
+      "description": "バランスの取れた能力を持つ賢いわんこ。"
+    },
+    {
+      "id": "bulldog",
+      "name": "ブルドッグ",
+      "rarity": "SSR",
+      "initial": false,
+      "stats": {
+        "hp": 300,
+        "attack": 60,
+        "speed": 3,
+        "cost": 200,
+        "productionTime": 5
+      },
+      "description": "非常にタフで強力な突進力を持つわんこ。"
+    }
+  ],
+  "enemies": [
+    {
+      "id": "mikeneko",
+      "name": "三毛猫",
+      "stats": {
+        "hp": 50,
+        "attack": 10,
+        "speed": 3
+      },
+      "description": "どこにでもいる普通の猫。"
+    },
+    {
+      "id": "kuroneko",
+      "name": "黒猫",
+      "stats": {
+        "hp": 150,
+        "attack": 25,
+        "speed": 5
+      },
+      "specialAbility": "素早い動きで攻撃をかわすことがある。",
+      "description": "道場2のボス。素早い動きが特徴。"
+    },
+    {
+      "id": "manekineko",
+      "name": "招き猫",
+      "stats": {
+        "hp": 500,
+        "attack": 50,
+        "speed": 2
+      },
+      "specialAbility": "広範囲攻撃、防御力アップのバフ。",
+      "description": "道場3のラスボス。非常に強力。"
+    }
+  ],
+  "gachaRates": [
+    { "name": "ブルドッグ (SSR)", "id": "bulldog", "rate": 2 },
+    { "name": "柴犬 (SR)", "id": "shibainu", "rate": 8 },
+    { "name": "ゴールデンレトリバー (R)", "id": "goldenretriever", "rate": 40 },
+    { "name": "たわし", "id": "tawashi", "rate": 50 }
+  ],
+  "stages": [
+    {
+      "id": "dojo1",
+      "name": "道場1（簡単）",
+      "ticketReward": 1,
+      "enemyProduction": {
+        "type": "fixedInterval",
+        "enemyId": "mikeneko",
+        "interval": 5000,
+        "limit": -1
+      },
+      "description": "三毛猫が5秒ごとに出現する基本的なステージ。"
+    },
+    {
+      "id": "dojo2",
+      "name": "道場2（普通）",
+      "ticketReward": 1,
+      "enemyProduction": {
+        "type": "fixedInterval",
+        "enemyId": "mikeneko",
+        "interval": 2000,
+        "limit": -1
+      },
+      "bossTrigger": {
+        "condition": "castleHit",
+        "count": 1,
+        "bossId": "kuroneko"
+      },
+      "description": "三毛猫が2秒ごとに出現。敵城を1回叩くと黒猫ボスが登場。"
+    },
+    {
+      "id": "dojo3",
+      "name": "道場3（むずい）",
+      "ticketReward": 1,
+      "enemyProduction": {
+        "type": "mixedInterval",
+        "enemies": [
+          { "enemyId": "mikeneko", "interval": 3000 },
+          { "enemyId": "kuroneko", "interval": 3000 }
+        ],
+        "limit": -1
+      },
+      "bossTrigger": {
+        "condition": "castleHit",
+        "count": 1,
+        "bossId": "manekineko"
+      },
+      "description": "三毛猫と黒猫が3秒ごとに出現。敵城を叩くとめちゃくちゃ強い招き猫が登場。"
+    }
+  ]
+}
