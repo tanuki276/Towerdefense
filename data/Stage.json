@@ -1,0 +1,52 @@
+{
+  "stages": [
+    {
+      "id": "dojo1",
+      "name": "道場1（簡単）",
+      "ticketReward": 1,
+      "enemyProduction": {
+        "type": "fixedInterval",
+        "enemyId": "mikeneko",
+        "interval": 5000,
+        "limit": -1
+      },
+      "description": "三毛猫がでてくるよ"
+    },
+    {
+      "id": "dojo2",
+      "name": "道場2（普通）",
+      "ticketReward": 1,
+      "enemyProduction": {
+        "type": "fixedInterval",
+        "enemyId": "mikeneko",
+        "interval": 2000,
+        "limit": -1
+      },
+      "bossTrigger": {
+        "condition": "castleHit",
+        "count": 1,
+        "bossId": "kuroneko"
+      },
+      "description": "三毛猫と黒猫がでてくるよ"
+    },
+    {
+      "id": "dojo3",
+      "name": "道場3（難しい）",
+      "ticketReward": 1,
+      "enemyProduction": {
+        "type": "mixedInterval",
+        "enemies": [
+          { "enemyId": "mikeneko", "interval": 3000 },
+          { "enemyId": "kuroneko", "interval": 3000 }
+        ],
+        "limit": -1
+      },
+      "bossTrigger": {
+        "condition": "castleHit",
+        "count": 1,
+        "bossId": "manekineko"
+      },
+      "description": "三毛猫と黒猫と招き猫がでてくるよ"
+    }
+  ]
+}
