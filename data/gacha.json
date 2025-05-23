@@ -1,0 +1,8 @@
+{
+  "gachaRates": [
+    { "name": "ブルドッグ (SSR)", "id": "bulldog", "rate": 2 },
+    { "name": "柴犬 (SR)", "id": "shibainu", "rate": 8 },
+    { "name": "ゴールデンレトリバー (R)", "id": "goldenretriever", "rate": 40 },
+    { "name": "たわし", "id": "tawashi", "rate": 50 }
+  ]
+}
