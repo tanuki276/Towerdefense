@@ -1,0 +1,36 @@
+{
+  "enemies": [
+    {
+      "id": "mikeneko",
+      "name": "三毛猫",
+      "stats": {
+        "hp": 50,
+        "attack": 10,
+        "speed": 3
+      },
+      "description": "どこにでもいる普通の猫。"
+    },
+    {
+      "id": "kuroneko",
+      "name": "黒猫",
+      "stats": {
+        "hp": 150,
+        "attack": 25,
+        "speed": 5
+      },
+      "specialAbility": "素早い動きで攻撃をかわすことがある。",
+      "description": "道場2のボス。素早い動きが特徴。"
+    },
+    {
+      "id": "manekineko",
+      "name": "招き猫",
+      "stats": {
+        "hp": 500,
+        "attack": 50,
+        "speed": 2
+      },
+      "specialAbility": "広範囲攻撃、防御力アップのバフ。",
+      "description": "道場3のラスボス。非常に強力。"
+    }
+  ]
+}
