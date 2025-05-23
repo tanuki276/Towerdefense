@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>シンプルタワーディフェンス</title>
+<style>
+  #battlefield { width: 600px; height: 200px; border: 1px solid #333; position: relative; overflow: hidden; }
+  .unit, .enemy { position: absolute; bottom: 10px; width: 40px; height: 40px; text-align: center; line-height: 40px; color: white; font-weight: bold; }
+  .unit { background: blue; left: 20px; }
+  .enemy { background: red; right: 20px; }
+</style>
+</head>
+<body>
+<h1>シンプルタワーディフェンス</h1>
+<div id="battlefield"></div>
+
+<script>
+class Character {
+  constructor(type, hp, attack, posX){
+    this.type = type;  // "unit" or "enemy"
+    this.hp = hp;
+    this.attack = attack;
+    this.posX = posX;
+    this.elem = document.createElement('div');
+    this.elem.className = type;
+    this.elem.style.left = posX + 'px';
+    this.elem.textContent = hp;
+    document.getElementById('battlefield').appendChild(this.elem);
+  }
+  
+  updatePos(){
+    this.elem.style.left = this.posX + 'px';
+    this.elem.textContent = this.hp;
+  }
+  
+  damage(amount){
+    this.hp -= amount;
+    if(this.hp < 0) this.hp = 0;
+  }
+  
+  isDead(){
+    return this.hp <= 0;
+  }
+  
+  remove(){
+    this.elem.remove();
+  }
+}
+
+// 味方と敵の配列
+const units = [];
+const enemies = [];
+
+// 味方を追加
+units.push(new Character('unit', 30, 5, 20));
+
+// 敵を追加
+enemies.push(new Character('enemy', 20, 3, 560));
+
+function gameLoop(){
+  // 敵は左にゆっくり移動
+  enemies.forEach(enemy => {
+    enemy.posX -= 1;
+    enemy.updatePos();
+  });
+  
+  // 味方は右にゆっくり移動（必要なければ外してもOK）
+  units.forEach(unit => {
+    unit.posX += 0;
+    unit.updatePos();
+  });
+  
+  // 攻撃判定（接近してるか？）
+  units.forEach(unit => {
+    enemies.forEach(enemy => {
+      if(enemy.posX - unit.posX < 50){
+        enemy.damage(unit.attack);
+        unit.damage(enemy.attack);
+      }
+    });
+  });
+  
+  // HP0のキャラを除去
+  for(let i = enemies.length - 1; i >= 0; i--){
+    if(enemies[i].isDead()){
+      enemies[i].remove();
+      enemies.splice(i,1);
+    }
+  }
+  for(let i = units.length - 1; i >= 0; i--){
+    if(units[i].isDead()){
+      units[i].remove();
+      units.splice(i,1);
+    }
+  }
+  
+  requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+</script>
+</body>
+</html>
